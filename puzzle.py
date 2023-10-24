@@ -13,16 +13,26 @@ CKnave = Symbol("C is a Knave")
 # A says "I am both a knight and a knave."
 sentence0 = Symbol("A is both")
 knowledge0 = And(
+    # From the rules
     Or(AKnight, AKnave),
-    Implication(sentence0, And(AKnight, AKnave)),
-    Implication(AKnight, sentence0)
+    Implication(AKnight, sentence0),
+    Implication(AKnave, Not(sentence0)),
+    # From the puzzle
+    Implication(sentence0, And(AKnight, AKnave))
 )
 
 # Puzzle 1
 # A says "We are both knaves."
 # B says nothing.
+sentence1_a = Symbol("A and B knaves")
 knowledge1 = And(
-    # TODO
+    # From the rules
+    Or(AKnight, AKnave),
+    Or(BKnight, BKnave),
+    Implication(AKnight, sentence1_a),
+    Implication(AKnave, Not(sentence1_a)),
+    # From the puzzle
+    Implication(sentence1_a, And(AKnave, BKnave)) 
 )
 
 # Puzzle 2
