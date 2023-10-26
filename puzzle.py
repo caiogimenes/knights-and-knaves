@@ -27,19 +27,28 @@ knowledge0 = And(
 sentence1_a = Symbol("A and B knaves")
 knowledge1 = And(
     # From the rules
-    Or(AKnight, AKnave),
-    Or(BKnight, BKnave),
-    Implication(AKnight, sentence1_a),
+    And(Or(AKnight, AKnave), Or(BKnight, BKnave)),
+    Biconditional(AKnight, sentence1_a),
     Implication(AKnave, Not(sentence1_a)),
     # From the puzzle
-    Implication(sentence1_a, And(AKnave, BKnave)) 
+    Biconditional(sentence1_a, And(AKnave, BKnave))
 )
 
 # Puzzle 2
 # A says "We are the same kind."
 # B says "We are of different kinds."
+sentence2_a = Symbol("Same kind")
+sentence2_b = Symbol("Different kind")
 knowledge2 = And(
-    # TODO
+    # From the rules
+    And(Or(AKnight, AKnave), Or(BKnight, BKnave)),
+    Biconditional(AKnight, sentence2_a),
+    Implication(AKnave, Not(sentence2_a)),
+    Biconditional(BKnight, sentence2_b),
+    Implication(BKnave, Not(sentence2_b)),
+    # From the puzzle
+    Biconditional(sentence2_a, And(Or(And(AKnight, BKnight), And(AKnave, BKnave)))),
+    Biconditional(sentence2_b, And(Or(And(AKnight, BKnave), And(AKnave, BKnight))))
 )
 
 # Puzzle 3
@@ -47,8 +56,30 @@ knowledge2 = And(
 # B says "A said 'I am a knave'."
 # B says "C is a knave."
 # C says "A is a knight."
+sentence3_a = Symbol("A said knight")
+sentence3_a_2 = Symbol("A said knave")
+sentence3_b = Symbol("B said A said knave")
+sentence3_b_2 = Symbol("C is knave")
+sentence3_c = Symbol("A is knight")
 knowledge3 = And(
-    # TODO
+    # From the rules
+    And(Or(AKnight, AKnave), Or(BKnight, BKnave), Or(CKnight, CKnave)),
+    Biconditional(AKnight, sentence3_a),
+    Implication(AKnave, Not(sentence3_a)),
+    Biconditional(AKnight, sentence3_a_2),
+    Implication(AKnave, Not(sentence3_a_2)),
+    Biconditional(BKnight, sentence3_b),
+    Implication(BKnave, Not(sentence3_b)),
+    Biconditional(CKnight, sentence3_c),
+    Implication(CKnave, Not(sentence3_c)),
+    # From the puzzle
+    Or(sentence3_a, sentence3_a_2),
+    Biconditional(sentence3_b, Not(sentence3_a)),
+    Implication(sentence3_b, sentence3_a_2),
+    Biconditional(sentence3_b_2, CKnave),
+    Implication(Not(sentence3_b_2), CKnight),
+    Biconditional(sentence3_c, AKnight),
+    Implication(Not(sentence3_c), AKnave)
 )
 
 
