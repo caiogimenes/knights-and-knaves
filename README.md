@@ -5,7 +5,7 @@ This repository contains a script to solve variations of the classic Knights and
 ## Dependencies
 
 - Python 3.x
-- The `logic.py` library file from the [CS50’s Introduction to Artificial Intelligence with Python](https://cs50.harvard.edu/ai/2023/) course by Harvard University..
+- The `logic.py` library file from the [CS50’s Introduction to Artificial Intelligence with Python](https://cs50.harvard.edu/ai/2023/) course by Harvard University.
 
 ## Usage
 
