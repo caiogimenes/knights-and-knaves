@@ -11,7 +11,7 @@ This repository contains a script to solve variations of the classic Knights and
 
 1. Clone the repository to your local machine.
 ```bash
-git clone https://github.com/yourusername/knights-and-knaves.git
+git clone https://github.com/caiogimenes/knights-and-knaves.git
 cd knights-and-knaves
 ```
 
